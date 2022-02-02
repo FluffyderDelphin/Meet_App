@@ -6,17 +6,17 @@ I should be able to “filter events by city”
 So that I can see the list of events that take place in that city
 
 
-SCENARIO 1: WHEN USER HASN’T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES.
+SCENARIO 1: 
 Given user hasn’t searched for any city
 When the user opens the app
 Then the user should see a list of all upcoming events
 
-SCENARIO 2: USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY SEARCH FOR A CITY.
+SCENARIO 2: 
 Given the main page is open
 When user starts typing in the city textbox
 Then the user should see a list of cities (suggestions) that match what they’ve typed
 
-SCENARIO 3: USER CAN SELECT A CITY FROM THE SUGGESTED LIST.
+SCENARIO 3: 
 Given the user was typing “Berlin” in the city textbox
 And the list of suggested cities is showing
 When the user selects a city (e.g., “Berlin, Germany”) from the list
@@ -30,8 +30,7 @@ As a user I should be able to expand and collapse Events, to see and hide Detail
 
 SCENARIO 1:
 Given the user has not clicked on any Event
-When the User searches for Events.
-Then they are collaped by default.
+Then they are collapsed by default.
 
 SCENARIO 2:
 Given the Event is collapsed
@@ -45,7 +44,7 @@ Then the Even gets collapsed again.
 
 Feature 3:
 
-As a user I should be able to set specify  the numbers of Evemts, so that I can limit the Amount I see on the List. 
+As a user I should be able to set specify  the numbers of Events, so that I can limit the Amount I see on the List. 
 
 SCENARIO 1:
 Given the user hasnt specified a Number and looks for Events.
@@ -58,16 +57,14 @@ When the user specifies a number of Events.
 Then the Number of displayed Events changes.
 
 
-
-
 Feature 4:
 
 As a user  I should be able to view my information offline, so that I can check Events even without Internet Access. 
 
 SCENARIO 1:
-Given the Users has no internet Connection.
+Given the User has no internet Connection.
 When there is cached Data.
-Then the user schould still be able to view the Events.
+Then the user schould still be able to view the Events stored in the cache.
 
 SCENARIO 2:
 Given the User has no internet Connection.
@@ -76,9 +73,9 @@ Then he gets an Error Message.
 
 Feature 5:
 
-As a user I should be able to view Charts that visualizes Event Data, so I can soo how the Events are distributed over diffrent Cities
+As a user I should be able to view Charts that visualizes Event Data, so I can soo how the Events are distributed over different Cities
 
 SCENARIO 1:
-Given there are a number of Events in diffrent Cities
+Given there are a number of Events in different Cities
 When the Users opens the Chart. 
-Then he can see how many Events are distruted over diffrent Cities on the Chart.
+Then he can see how many Events are distributed over different Cities on the Chart.
