@@ -1,6 +1,6 @@
 const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
-const calender = google.calender('v3');
+const calender = google.calendar('v3');
 
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 
@@ -12,7 +12,7 @@ const credentials = {
   auth_uri: 'https://accounts.google.com/o/oauth2/auth',
   token_uri: 'https://oauth2.googleapis.com/token',
   auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
-  redirect_uris: ['https://FluffyderDelphingithub.io/Meet_App/'],
+  redirect_uris: ['https://FluffyderDelphin.github.io/Meet_App/'],
   javascript_origins: [
     'https://FluffyderDelphin.github.io',
     'http://localhost:3000',
