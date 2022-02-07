@@ -86,7 +86,7 @@ functions:
   getCalenderEvents:
     handler: handler.getCalenderEvents
     events:
-      -http:
+      - http:
         path: api/get-events/{access_token}
         method: get
         cors:
