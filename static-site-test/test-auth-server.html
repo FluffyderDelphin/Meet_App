@@ -54,9 +54,9 @@
           })
           .then(function (json) {
             const result = JSON.stringify(json);
-            const { authUrl } = JSON.parse(result);
+            const { authURL } = JSON.parse(result);
             resultElement.innerText = result;
-            resultLink.href = authUrl;
+            resultLink.href = authURL;
           });
       };
       const codeValue = document.getElementById("code");
