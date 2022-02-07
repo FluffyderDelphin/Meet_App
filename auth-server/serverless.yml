@@ -74,7 +74,7 @@ functions:
           cors:
             origin: '*'
             allowCredentials: true
-  getAccesToken:
+  getAccessToken:
     handler: handler.getAccessToken
     events:
       - http:
