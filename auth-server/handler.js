@@ -43,7 +43,7 @@ module.exports.getAuthURL = async () => {
   };
 };
 
-module.exports.getAccessToken = (event) => {
+module.exports.getAccessToken = async (event) => {
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
     client_secret,
@@ -121,6 +121,7 @@ module.exports.getCalenderEvents = async (event) => {
         statusCode: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
         },
         body: JSON.stringify({ events: results.data.items }),
       };
