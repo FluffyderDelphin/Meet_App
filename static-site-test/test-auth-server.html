@@ -21,12 +21,11 @@
   
       <main id="container">
         <h1>OAuth2 Test</h1>
-          <h4><b>Step 1:</b> Get the Auth URL</h4>
-          <p>Click the button below to get your auth url.</p>
-          <button id="getCode">Get OAuth URL</button>
-          <p id="result"></p>
-          <a id="authURL" href target="_blank">Click to authorise</a>
-
+        <h4><b>Step 1:</b> Get the OAuth URL</h4>
+        <p>Click the button below to get your OAuth URL.</p>
+        <button id="getURL">Get OAuth URL</button>
+        <p id="result"></p>
+        <a id="authURL" href target="_blank">Click to authorize</a>
           
           <h4>Step 2: Get your code and exchange for an access token</h4>
           <p>
@@ -42,26 +41,24 @@
           <p id="accessToken"></p>
       </main>
     <script type="text/javascript">
-      const getCodeElement = document.getElementById("getCode");
+
+      const getURLElement = document.getElementById("getURL");
       const resultElement = document.getElementById("result");
       const resultLink = document.getElementById("authURL");
       const getAuthUrl = "https://6332i6oa2i.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url";
 
-      getCodeElement.onclick = ()=>{
-          fetch(getAuthUrl)
-          .then(function(response){
-              return response.json();
+      getURLElement.onclick = function () {
+        fetch(getAuthURL)
+          .then(function (response) {
+            return response.json();
           })
-          .then(function(json){
-              const result = JSON.stringify(json);
-              
-              const {authUrl} =JSON.parse(result);
-
-              resultElement.innerText = result;
-              resultLink.href = authUrl;
-          })
-      }
-
+          .then(function (json) {
+            const result = JSON.stringify(json);
+            const { authUrl } = JSON.parse(result);
+            resultElement.innerText = result;
+            resultLink.href = authUrl;
+          });
+      };
       const codeValue = document.getElementById("code");
       const getAccesToken = document.getElementById("getToken");
       const getAccesTokenElement = document.getElementById("accesToken");
@@ -75,7 +72,7 @@
       }
       const getTokenRequest = getToken + "/"+code;
       fetch(getTokenRequest)
-      .then(function(response){
+      .then((response)=>{
         return response.json();
       })
       .then((json)=>{

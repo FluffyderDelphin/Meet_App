@@ -63,6 +63,10 @@ module.exports.getAccesToken = async (event) => {
     .then((token) => {
       return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify(token),
       };
     })
@@ -70,6 +74,10 @@ module.exports.getAccesToken = async (event) => {
       console.log(err);
       return {
         statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify(err),
       };
     });
