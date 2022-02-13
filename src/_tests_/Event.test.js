@@ -8,6 +8,15 @@ describe('<Event /> components', () => {
   beforeAll(() => {
     EventWrapper = mount(<Event eventData={mockData[0]} />);
   });
+  test('Event Compnent renders Event Data', () => {
+    const { eventData } = EventWrapper.props();
+    expect(EventWrapper.find('.title').text()).toBe(eventData.summary);
+
+    expect(EventWrapper.find('.description').text()).toBe(
+      eventData.description
+    );
+  });
+
   test('"Show Details"Button will show more Details about Event', () => {
     EventWrapper.setState({
       ShowDetails: false,
@@ -24,26 +33,17 @@ describe('<Event /> components', () => {
     expect(EventWrapper.state('ShowDetails')).toBe(false);
   });
 
-  test('Event Compnent renders Event Data', () => {
-    const { eventData } = EventWrapper.props();
-    expect(EventWrapper.find('.title').text()).toBe(eventData.summary);
-
-    expect(EventWrapper.find('.description').text()).toBe(
-      eventData.description
-    );
-  });
-
   // test('when showdetails is true,   '.details'  renderd', () => {
   //   EventWrapper.setState({
   //     ShowDetails: true,
   //   });
-  //   expect(EventWrapper.find('.description')).toHaveLength(1);
+  //   expect(EventWrapper.find('.details')).toHaveLength(1);
   // });
 
   // test('when showdetails is false  '.details is not renderd', () => {
   //   EventWrapper.setState({
   //     ShowDetails: false,
   //   });
-  //   expect(EventWrapper.find('.description')).toBe
+  //   expect(EventWrapper.find('.details')).toBe
   // });
 });

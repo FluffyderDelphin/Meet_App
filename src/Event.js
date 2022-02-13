@@ -31,6 +31,10 @@ class Event extends Component {
         >
           {this.showDetailsButton}
         </button>
+        <div className="title">{event.summary}</div>
+        <div className="details">
+          <div className="description">{event.description}</div>
+        </div>
         {/* {this.showDetailsDescription} */}
       </div>
     );
