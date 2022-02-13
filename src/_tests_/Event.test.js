@@ -31,17 +31,19 @@ describe('<Event /> components', () => {
     expect(EventWrapper.state('ShowDetails')).toBe(false);
   });
 
-  test('when showdetails is true details"   displayed', () => {
+  test('when showdetails is true ".details"   displayed', () => {
     EventWrapper.setState({
       ShowDetails: true,
     });
-    expect(EventWrapper.find('.displayed')).toHaveLength(1);
+    expect(EventWrapper.find('.details').instance().style.display).toBe(
+      'block'
+    );
   });
 
   test('when showdetails is false  ".details" is not displayed', () => {
     EventWrapper.setState({
       ShowDetails: false,
     });
-    expect(EventWrapper.find('.hidden')).toHaveLength(1);
+    expect(EventWrapper.find('.details').instance().style.display).toBe('none');
   });
 });
