@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 import { mockData } from '../mock-data';
 import Event from '../Event';
@@ -6,7 +6,7 @@ import Event from '../Event';
 describe('<Event /> components', () => {
   let EventWrapper;
   beforeAll(() => {
-    EventWrapper = shallow(<Event />);
+    EventWrapper = mount(<Event eventData={mockData[0]} />);
   });
   test('"Show Details"Button will show more Details about Event', () => {
     EventWrapper.setState({
@@ -24,14 +24,23 @@ describe('<Event /> components', () => {
     expect(EventWrapper.state('ShowDetails')).toBe(false);
   });
 
-  // test('when showdetails is true, the desription is also renderd', () => {
+  test('Event Compnent renders Event Data', () => {
+    const { eventData } = EventWrapper.props();
+    expect(EventWrapper.find('.title').text()).toBe(eventData.summary);
+
+    expect(EventWrapper.find('.description').text()).toBe(
+      eventData.description
+    );
+  });
+
+  // test('when showdetails is true,   '.details'  renderd', () => {
   //   EventWrapper.setState({
   //     ShowDetails: true,
   //   });
   //   expect(EventWrapper.find('.description')).toHaveLength(1);
   // });
 
-  // test('when showdetails is false the desription is not renderd', () => {
+  // test('when showdetails is false  '.details is not renderd', () => {
   //   EventWrapper.setState({
   //     ShowDetails: false,
   //   });
