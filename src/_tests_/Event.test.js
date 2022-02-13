@@ -23,4 +23,11 @@ describe('<Event /> components', () => {
     EventWrapper.find('.showDetails').simulate('click');
     expect(EventWrapper.state('ShowDetails')).toBe(false);
   });
+
+  test('when showdetails is true, the desription is also renderd', () => {
+    EventWrapper.setState({
+      ShowDetails: true,
+    });
+    expect(EventWrapper.find('.description')).toHaveLength(1);
+  });
 });

@@ -5,11 +5,15 @@ class Event extends Component {
     ShowDetails: false,
   };
   showDetailsButton = 'Show Details';
+  showDetailsDescription = null;
   handleDetails = () => {
     const showDetailsCheck = this.state.ShowDetails;
     if (!showDetailsCheck) {
       this.setState({ ShowDetails: true });
       this.showDetailsButton = 'Hide Details';
+      return (this.showDetailsDescription = (
+        <div className="description"></div>
+      ));
     } else {
       this.setState({ ShowDetails: false });
       this.showDetailsButton = 'Show Details';
@@ -19,7 +23,15 @@ class Event extends Component {
     const { event } = this.props;
     return (
       <div>
-        <button className="showDetails">{this.showDetailsButton}</button>
+        <button
+          className="showDetails"
+          onClick={() => {
+            this.handleDetails();
+          }}
+        >
+          {this.showDetailsButton}
+        </button>
+        {this.showDetailsDescription}
       </div>
     );
   }
