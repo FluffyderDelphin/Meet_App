@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme';
 import React, { Component } from 'react';
 
 class Event extends Component {
@@ -7,8 +6,8 @@ class Event extends Component {
   };
   showDetailsButton = 'Show Details';
   handleDetails = () => {
-    const showDetails = this.state.ShowDetails;
-    if (!showDetails) {
+    const showDetailsCheck = this.state.ShowDetails;
+    if (!showDetailsCheck) {
       this.setState({ ShowDetails: true });
       this.showDetailsButton = 'Hide Details';
     } else {
