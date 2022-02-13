@@ -6,15 +6,13 @@ import Event from '../Event';
 describe('<Event /> components', () => {
   let EventWrapper;
   beforeAll(() => {
-    EventWrapper = mount(<Event eventData={mockData[0]} />);
+    EventWrapper = mount(<Event event={mockData[0]} />);
   });
   test('Event Compnent renders Event Data', () => {
-    const { eventData } = EventWrapper.props();
-    expect(EventWrapper.find('.title').text()).toBe(eventData.summary);
+    const { event } = EventWrapper.props();
+    expect(EventWrapper.find('.title').text()).toBe(event.summary);
 
-    expect(EventWrapper.find('.description').text()).toBe(
-      eventData.description
-    );
+    expect(EventWrapper.find('.description').text()).toBe(event.description);
   });
 
   test('"Show Details"Button will show more Details about Event', () => {
