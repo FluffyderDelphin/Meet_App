@@ -36,7 +36,6 @@ class Event extends Component {
         >
           <div className="description">{event.description}</div>
         </div>
-        {/* {this.showDetailsDescription} */}
       </div>
     );
   }
