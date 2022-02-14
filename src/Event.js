@@ -19,14 +19,6 @@ class Event extends Component {
     const { event } = this.props;
     return (
       <div>
-        <button
-          className="showDetails"
-          onClick={() => {
-            this.handleDetails();
-          }}
-        >
-          {this.showDetailsButton}
-        </button>
         <div className="title">{event.summary}</div>
         <div
           className={`details`}
@@ -36,6 +28,14 @@ class Event extends Component {
         >
           <div className="description">{event.description}</div>
         </div>
+        <button
+          className="showDetails"
+          onClick={() => {
+            this.handleDetails();
+          }}
+        >
+          {this.showDetailsButton}
+        </button>
       </div>
     );
   }
