@@ -5,17 +5,15 @@ class Event extends Component {
     ShowDetails: false,
   };
   showDetailsButton = 'Show Details';
-  // showDetailsCss = 'hidden';
+
   handleDetails = () => {
     const showDetailsCheck = this.state.ShowDetails;
     if (!showDetailsCheck) {
       this.setState({ ShowDetails: true });
       this.showDetailsButton = 'Hide Details';
-      // this.showDetailsCss = 'displayed';
     } else {
       this.setState({ ShowDetails: false });
       this.showDetailsButton = 'Show Details';
-      // this.showDetailsCss = 'hidden';
     }
   };
   render() {
@@ -31,7 +29,12 @@ class Event extends Component {
           {this.showDetailsButton}
         </button>
         <div className="title">{event.summary}</div>
-        <div className={`details`}>
+        <div
+          className={`details`}
+          style={
+            this.state.ShowDetails ? { display: 'block' } : { display: 'none' }
+          }
+        >
           <div className="description">{event.description}</div>
         </div>
         {/* {this.showDetailsDescription} */}
