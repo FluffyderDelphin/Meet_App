@@ -5,7 +5,6 @@ class Event extends Component {
     ShowDetails: false,
   };
   showDetailsButton = 'Show Details';
-
   handleDetails = () => {
     const showDetailsCheck = this.state.ShowDetails;
     if (!showDetailsCheck) {
