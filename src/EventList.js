@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import Event from './Event';
 
 function Eventlist({ events, numberOfEvents }) {
-  let renderEventList = (list,number) =>{
-    return {for(let i= 0;i < number ;i++){
+  let renderEventList = function (list, number) {
+    for (let i = 0; i < number; i++) {
+      return;
       <li>
-      <Event event={list[1]} />
-      </li>
-    
-
-    }}
-
-  }
+        <Event event={list[1]} />
+      </li>;
+    }
+  };
   return (
     <ul className="EventList">
       {/* {events.map((event) => (
@@ -19,7 +17,7 @@ function Eventlist({ events, numberOfEvents }) {
           <Event event={event} />
         </li>
       ))} */}
-      {renderEventList(events,numberOfEvents);}
+      {renderEventList(events, numberOfEvents)}
     </ul>
   );
 }
