@@ -3,12 +3,17 @@ import { shallow } from 'enzyme';
 import NumberOfEvents from '../NumberOfEvents';
 
 describe('<NumberOfEvents /> components', () => {
-  let NumberOfEventsWrapper;
+  let NumberOfEventsWrapper, numberOfEvents;
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(
+      <NumberOfEvents numberOfEvents={numberOfEvents} />
+    );
   });
 
   test('render textbox  for setting the number', () => {
     expect(NumberOfEventsWrapper.find('.numberOfEvents')).toHaveLength(1);
+    expect(NumberOfEventsWrapper.find('.numberOfEvents').props().type).toBe(
+      'number'
+    );
   });
 });

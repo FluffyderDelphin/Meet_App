@@ -20,8 +20,8 @@ describe('<App /> component', () => {
   test('render NumberofEvents', () => {
     expect(AppWrapper.find(NumberofEvents)).toHaveLength(1);
   });
-  test('default maximum lenght of NumberOfEvent list is 32', () => {
-    // expect(AppWrapper.state('numberOfEvents')).toBe(32);
-    expect(AppWrapper.find('.events').length).toBeLessThanOrEqual(32);
+
+  test('App has Global State for NumberOfEvents', () => {
+    expect(AppWrapper.state('numberOfEvents')).toBeDefined();
   });
 });
