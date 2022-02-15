@@ -7,18 +7,16 @@ import { mockData } from '../mock-data';
 describe('<EventList /> component', () => {
   let numberOfEvents, EventListWrapper;
   beforeAll(() => {
-    numberOfEvents = 1;
     EventListWrapper = shallow(
-      <EventList events={mockData} numberOfEvents={numberOfEvents} />
+      <EventList events={mockData} numberOfEvents={mockData.length} />
     );
   });
   test('render corrrect number of events', () => {
     expect(EventListWrapper.find(Event)).toHaveLength(mockData.length);
   });
 
-  test('Event List should be either equal or lower to NumberOfEvents', () => {
-    expect(EventListWrapper.find(Event).length).toBeLessThanOrEqual(
-      numberOfEvents
-    );
+  test('Event List should be  equal to NumberOfEvents if its less then the Events Array', () => {
+    <EventList events={mockData} numberOfEvents={1} />;
+    expect(EventListWrapper.find(Event).length).toBe(1);
   });
 });
