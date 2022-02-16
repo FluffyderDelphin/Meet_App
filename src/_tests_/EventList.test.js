@@ -16,7 +16,9 @@ describe('<EventList /> component', () => {
   });
 
   test('Event List should be  equal to NumberOfEvents if its less then the Events Array', () => {
-    <EventList events={mockData} numberOfEvents={1} />;
+    EventListWrapper = shallow(
+      <EventList events={mockData} numberOfEvents={1} />
+    );
     expect(EventListWrapper.find(Event).length).toBe(1);
   });
 });

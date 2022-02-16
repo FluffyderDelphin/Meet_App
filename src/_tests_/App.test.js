@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import App from '../App';
 import EventList from '../EventList';
 import CitySearch from '../CitySearch';
 import NumberofEvents from '../NumberOfEvents';
+import Eventlist from '../EventList';
 
 describe('<App /> component', () => {
   let AppWrapper;
@@ -23,5 +24,15 @@ describe('<App /> component', () => {
 
   test('App has Global State for NumberOfEvents', () => {
     expect(AppWrapper.state('numberOfEvents')).toBeDefined();
+  });
+});
+
+describe('<App /> integration', () => {
+  test('App passes  "Events" state as a prop to Eventlist', () => {
+    const AppWrapper = mount(<App />);
+    const AppEventsState = AppWrapper.state('event');
+    expect(AppEventsState).not.toEqual(undefined);
+    expect(AppWrapper.find(Eventlist).props().events).toEqual(AppEventsState);
+    AppWrapper.unmount();
   });
 });

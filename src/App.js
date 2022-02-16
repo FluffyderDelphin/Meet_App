@@ -7,13 +7,17 @@ import React, { Component } from 'react';
 class App extends Component {
   state = {
     numberOfEvents: 32,
+    events: '',
   };
   render() {
     return (
       <div className="App">
         <CitySearch />
         <NumberOfEvents />
-        <EventList />
+        <EventList
+          events={this.state.events}
+          numberOfEvents={this.state.numberOfEvents}
+        />
       </div>
     );
   }
