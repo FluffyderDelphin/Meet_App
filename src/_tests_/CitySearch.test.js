@@ -9,7 +9,9 @@ describe('<CitySeatch /> components', () => {
 
   beforeAll(() => {
     locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+    CitySearchWrapper = shallow(
+      <CitySearch locations={locations} updateEvents={() => {}} />
+    );
     query = CitySearchWrapper.state('query');
   });
   test('render text input', () => {
