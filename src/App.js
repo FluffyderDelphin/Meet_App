@@ -24,14 +24,16 @@ class App extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
-  updateEvents = (location) => {
+  updateEvents = (location, numberOfEvents) => {
     getEvents().then((events) => {
       const locationEvents =
         location === 'all'
           ? events
           : events.filter((event) => event.location === location);
+      const reduceCount = locationEvents.lenght - numberOfEvents;
+      const splicedEvents = locationEvents.splice(0, reduceCount);
       this.setState({
-        events: locationEvents,
+        events: splicedEvents,
       });
     });
   };
@@ -42,7 +44,7 @@ class App extends Component {
           locations={this.state.locations}
           updateEvents={this.updateEvents}
         />
-        <NumberOfEvents />
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} />
         <EventList
           events={this.state.events}
           numberOfEvents={this.state.numberOfEvents}

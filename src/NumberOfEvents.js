@@ -1,6 +1,7 @@
 import react, { Component } from 'react';
 
 class NumberOfEvents extends Component {
+  numberOfEvents = this.props.numberOfEvents;
   render() {
     return (
       <div>

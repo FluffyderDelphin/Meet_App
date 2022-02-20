@@ -85,7 +85,7 @@ input[type='number'] {
   position: relative;
 }
 
-.details-btn {
+.showDetails {
   position: absolute;
   right: 5px;
   bottom: 5px;
@@ -95,7 +95,7 @@ input[type='number'] {
   cursor: pointer;
 }
 
-.name {
+.title {
   font-size: 18px;
   font-weight: 600;
 }
