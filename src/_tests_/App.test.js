@@ -94,7 +94,7 @@ describe('<App /> integration', () => {
     const EventsState = AppWrapper.state('events');
     const allEvents = await getEvents();
     AppWrapper.setState({ events: allEvents });
-    expect(NumberOfEventsState).toBeLessThanOrEual(allEvents.length);
+    expect(NumberOfEventsState).toBeLessThanOrEqual(allEvents.length);
     AppWrapper.unmount();
   });
 });
