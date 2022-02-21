@@ -1,7 +1,6 @@
 import react, { Component } from 'react';
 
 class NumberOfEvents extends Component {
-  numberOfEvents = this.props.numberOfEvents;
   render() {
     return (
       <div>
@@ -11,7 +10,9 @@ class NumberOfEvents extends Component {
           onChange={(e) => {
             this.props.updateEvents(this.props.events, e.target.value);
           }}
-        ></input>
+        >
+          {this.props.numberOfEvents}
+        </input>
       </div>
     );
   }

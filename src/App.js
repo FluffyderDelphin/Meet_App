@@ -14,13 +14,16 @@ class App extends Component {
   };
   componentDidMount() {
     this.mounted = true;
+    const { numberOfEvents } = this.state;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        this.setState({
+          events: events.slice(0, numberOfEvents),
+          locations: extractLocations(events),
+        });
       }
     });
   }
-
   componentWillUnmount() {
     this.mounted = false;
   }
@@ -33,7 +36,7 @@ class App extends Component {
       const sliceEvents = locationEvents.slice(0, eventCount);
       this.setState({
         events: sliceEvents,
-        numberOfEvents: eventCount,
+        numberOfEvents: eventCount ? eventCount : this.state.numberOfEvents,
       });
     });
   };
