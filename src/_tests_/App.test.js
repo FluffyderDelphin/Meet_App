@@ -39,12 +39,14 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
-  test('App passes  "Events" state as a prop to Eventlist', () => {
-    const AppEventsState = AppWrapper.state('events');
-    expect(AppEventsState).not.toEqual(undefined);
-    expect(AppWrapper.find(Eventlist).props().events).toEqual(AppEventsState);
+  test('App passes  "Events" state as a prop to Eventlist', async () => {
+    let mounted = await AppWrapper.instance().componentDidMount();
+    if (mounted) {
+      const AppEventsState = AppWrapper.state('events');
+      expect(AppEventsState).not.toEqual(undefined);
+      expect(AppWrapper.find(Eventlist).props().events).toEqual(AppEventsState);
+    }
   });
-
   test('App passes "locations" state as a prop to CitySearch', () => {
     const AppLocationsState = AppWrapper.state('locations');
     expect(AppLocationsState).not.toEqual(undefined);
@@ -69,7 +71,6 @@ describe('<App /> integration', () => {
   });
 
   test('get list of all events when user selects "See all cities"', async () => {
-    const AppWrapper = mount(<App />);
     const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
     await suggestionItems.at(suggestionItems.length - 1).simulate('click');
     const allEvents = await getEvents();
