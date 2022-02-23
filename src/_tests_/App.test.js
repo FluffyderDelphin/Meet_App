@@ -37,6 +37,11 @@ describe('<App /> component', () => {
     const AppLocationsState = AppWrapper.state('locations');
     expect(AppLocationsState).not.toEqual(undefined);
   });
+
+  test('App has "currentLocation" state', () => {
+    const AppLocationsState = AppWrapper.state('currentLocation');
+    expect(AppLocationsState).not.toEqual(undefined);
+  });
 });
 
 describe('<App /> integration', () => {
@@ -55,6 +60,16 @@ describe('<App /> integration', () => {
       events: mockData,
     });
     expect(AppWrapper.find(Eventlist).props().events).toEqual(AppEventsState);
+  });
+
+  test('App passes  "currentLocation" state as a prop to NumberOfEvents', () => {
+    const AppEventsState = AppWrapper.state('currentLocation');
+    AppWrapper.setState({
+      currentLocation: 'all',
+    });
+    expect(AppWrapper.find(NumberofEvents).props().currentLocation).toEqual(
+      AppEventsState
+    );
   });
 
   test('App passes "locations" state as a prop to CitySearch', () => {
@@ -101,24 +116,24 @@ describe('<App /> integration', () => {
     );
   });
 
-  test('onChange handler in NumberofEvents Changes NumberOfEvents State', () => {
+  test('onChange handler in NumberofEvents Changes NumberOfEvents State', async () => {
     const NumberOfEventsWrapper = AppWrapper.find(NumberofEvents);
     const NumberOfEventsHandler = NumberOfEventsWrapper.find('.numberOfEvents');
     AppWrapper.setState({
       numberOfEvents: 2,
     });
     const Number = { target: { value: 1 } };
-    NumberOfEventsHandler.simulate('change', Number);
+    await NumberOfEventsHandler.simulate('change', Number);
     expect(AppWrapper.state('numberOfEvents')).toEqual(1);
   });
 
-  test('get list of events matching the numberOf Events selected by the user', async () => {
-    const allEvents = await getEvents();
+  test('get list of events matching the numberOfEvents selected by the user', async () => {
     AppWrapper.setState({
       numberOfEvents: 1,
-      events: allEvents,
     });
     const NumberOfEventsState = AppWrapper.state('numberOfEvents');
-    expect(allEvents.length).toBeLessThanOrEqual(NumberOfEventsState);
+    expect(AppWrapper.find(Event).length).toBeLessThanOrEqual(
+      NumberOfEventsState
+    );
   });
 });

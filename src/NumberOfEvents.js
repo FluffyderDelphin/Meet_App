@@ -8,8 +8,9 @@ class NumberOfEvents extends Component {
           className="numberOfEvents"
           type="number"
           value={this.props.numberOfEvents}
+          min="0"
           onChange={(e) => {
-            this.props.updateEvents(this.props.events, e.target.value);
+            this.props.updateEvents(this.props.currentLocation, e.target.value);
           }}
         />
       </div>

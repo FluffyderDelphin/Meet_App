@@ -16,4 +16,7 @@ describe('<NumberOfEvents /> components', () => {
       'number'
     );
   });
+  test('nummberOf Events props must always be positve ', () => {
+    expect(NumberOfEventsWrapper.find('.numberOfEvents').props().min).toBe('0');
+  });
 });
