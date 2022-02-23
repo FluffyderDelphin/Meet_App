@@ -27,6 +27,16 @@ describe('<App /> component', () => {
   test('App has Global State for NumberOfEvents', () => {
     expect(AppWrapper.state('numberOfEvents')).toBeDefined();
   });
+
+  test('App has "events" state', () => {
+    const AppEventsState = AppWrapper.state('events');
+    expect(AppEventsState).not.toEqual(undefined);
+  });
+
+  test('App has "locations" state', () => {
+    const AppLocationsState = AppWrapper.state('locations');
+    expect(AppLocationsState).not.toEqual(undefined);
+  });
 });
 
 describe('<App /> integration', () => {
@@ -39,17 +49,19 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
-  test('App passes  "Events" state as a prop to Eventlist', async () => {
-    let mounted = await AppWrapper.instance().componentDidMount();
-    if (mounted) {
-      const AppEventsState = AppWrapper.state('events');
-      expect(AppEventsState).not.toEqual(undefined);
-      expect(AppWrapper.find(Eventlist).props().events).toEqual(AppEventsState);
-    }
+  test('App passes  "Events" state as a prop to Eventlist', () => {
+    const AppEventsState = AppWrapper.state('events');
+    AppWrapper.setState({
+      events: mockData,
+    });
+    expect(AppWrapper.find(Eventlist).props().events).toEqual(AppEventsState);
   });
+
   test('App passes "locations" state as a prop to CitySearch', () => {
     const AppLocationsState = AppWrapper.state('locations');
-    expect(AppLocationsState).not.toEqual(undefined);
+    AppWrapper.setState({
+      locations: extractLocations(mockData),
+    });
     expect(AppWrapper.find(CitySearch).props().locations).toEqual(
       AppLocationsState
     );
@@ -89,23 +101,24 @@ describe('<App /> integration', () => {
     );
   });
 
-  test('onChange handler in NumberofEvents Changes NumberOfEvents State', async () => {
+  test('onChange handler in NumberofEvents Changes NumberOfEvents State', () => {
     const NumberOfEventsWrapper = AppWrapper.find(NumberofEvents);
     const NumberOfEventsHandler = NumberOfEventsWrapper.find('.numberOfEvents');
-    await NumberOfEventsHandler.simulate('onChange');
-    expect(AppWrapper.state('numberOfEvents')).toEqual(
-      NumberOfEventsHandler.value
-    );
+    AppWrapper.setState({
+      numberOfEvents: 2,
+    });
+    const Number = { target: { value: 1 } };
+    NumberOfEventsHandler.simulate('change', Number);
+    expect(AppWrapper.state('numberOfEvents')).toEqual(1);
   });
 
   test('get list of events matching the numberOf Events selected by the user', async () => {
-    const NumberOfEventsState = AppWrapper.state('numberOfEvents');
-    const randomNumber = Math.floor(Math.random() * mockData.length);
-    AppWrapper.setState({
-      numberOfEvents: randomNumber,
-    });
     const allEvents = await getEvents();
-    AppWrapper.setState({ events: allEvents });
-    expect(NumberOfEventsState).toBeLessThanOrEqual(allEvents.length);
+    AppWrapper.setState({
+      numberOfEvents: 1,
+      events: allEvents,
+    });
+    const NumberOfEventsState = AppWrapper.state('numberOfEvents');
+    expect(allEvents.length).toBeLessThanOrEqual(NumberOfEventsState);
   });
 });

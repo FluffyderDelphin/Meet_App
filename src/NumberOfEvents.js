@@ -7,12 +7,11 @@ class NumberOfEvents extends Component {
         <input
           className="numberOfEvents"
           type="number"
+          value={this.props.numberOfEvents}
           onChange={(e) => {
             this.props.updateEvents(this.props.events, e.target.value);
           }}
-        >
-          {this.props.numberOfEvents}
-        </input>
+        />
       </div>
     );
   }

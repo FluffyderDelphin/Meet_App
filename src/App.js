@@ -13,15 +13,12 @@ class App extends Component {
     locations: [],
   };
   componentDidMount() {
-    this.mounted = true;
     const { numberOfEvents } = this.state;
     getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events: events.slice(0, numberOfEvents),
-          locations: extractLocations(events),
-        });
-      }
+      this.setState({
+        events: events.slice(0, numberOfEvents),
+        locations: extractLocations(events),
+      });
     });
   }
   componentWillUnmount() {
@@ -45,12 +42,16 @@ class App extends Component {
       <div className="App">
         <CitySearch
           locations={this.state.locations}
-          updateEvents={this.updateEvents}
+          updateEvents={(location, eventCount) => {
+            this.updateEvents(location, eventCount);
+          }}
         />
         <NumberOfEvents
           numberOfEvents={this.state.numberOfEvents}
           events={this.state.events}
-          updateEvents={this.updateEvents}
+          updateEvents={(location, eventCount) => {
+            this.updateEvents(location, eventCount);
+          }}
         />
         <EventList
           events={this.state.events}
