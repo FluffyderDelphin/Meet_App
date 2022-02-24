@@ -2,14 +2,14 @@ import react, { Component } from 'react';
 
 class NumberOfEvents extends Component {
   state = {
-    numberHandle: this.props.numberOfEvents,
+    numberHandle: 32,
   };
 
-  numberOfEventsHandler(event) {
+  numberOfEventsHandler = (event) => {
     this.setState({
       numberHandle: event.target.value,
     });
-  }
+  };
 
   render() {
     return (
