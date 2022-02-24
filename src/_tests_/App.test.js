@@ -116,14 +116,27 @@ describe('<App /> integration', () => {
     );
   });
 
-  test('onChange handler in NumberofEvents Changes NumberOfEvents State', async () => {
+  // test('onChange handler in NumberofEvents Changes NumberOfEvents State', async () => {
+  //   const NumberOfEventsWrapper = AppWrapper.find(NumberofEvents);
+  //   const NumberOfEventsHandler = NumberOfEventsWrapper.find('.numberOfEvents');
+  //   AppWrapper.setState({
+  //     numberOfEvents: 2,
+  //   });
+  //   const Number = { target: { value: 1 } };
+  //   await NumberOfEventsHandler.simulate('change', Number);
+  //   expect(AppWrapper.state('numberOfEvents')).toEqual(1);
+  // });
+
+  test('on click changes NumberOfEvents State', async () => {
     const NumberOfEventsWrapper = AppWrapper.find(NumberofEvents);
+    const NumberOfEventsButton = NumberOfEventsWrapper.find('.changeNumbers');
     const NumberOfEventsHandler = NumberOfEventsWrapper.find('.numberOfEvents');
     AppWrapper.setState({
       numberOfEvents: 2,
     });
     const Number = { target: { value: 1 } };
     await NumberOfEventsHandler.simulate('change', Number);
+    await NumberOfEventsButton.simulate('click');
     expect(AppWrapper.state('numberOfEvents')).toEqual(1);
   });
 

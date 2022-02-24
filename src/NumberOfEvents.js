@@ -1,6 +1,16 @@
 import react, { Component } from 'react';
 
 class NumberOfEvents extends Component {
+  state = {
+    numberHandle: 32,
+  };
+
+  numberOfEventsHandler(event) {
+    this.setState({
+      numberHandle: event.target.value,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -9,10 +19,19 @@ class NumberOfEvents extends Component {
           type="number"
           value={this.props.numberOfEvents}
           min="0"
-          onChange={(e) => {
-            this.props.updateEvents(this.props.currentLocation, e.target.value);
-          }}
+          onChange={this.numberOfEventsHandler}
         />
+        <button
+          className="changeNumbers"
+          onClick={() => {
+            this.props.updateEvents(
+              this.props.currentLocation,
+              this.state.numberHandle
+            );
+          }}
+        >
+          Update Event Count
+        </button>
       </div>
     );
   }

@@ -16,7 +16,12 @@ describe('<NumberOfEvents /> components', () => {
       'number'
     );
   });
-  test('nummberOf Events props must always be positve ', () => {
+  test('nummberOf Events props must always be positve', () => {
     expect(NumberOfEventsWrapper.find('.numberOfEvents').props().min).toBe('0');
+  });
+
+  test('NumberOfEvents has "numberHandle" state defiened', () => {
+    const NumberHandle = NumberOfEventsWrapper.state('numberHandle');
+    expect(NumberHandle).not.toEqual(undefined);
   });
 });
