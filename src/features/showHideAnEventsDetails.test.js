@@ -1,4 +1,3 @@
-import { waitForElementToBeRemoved } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import Event from '../Event';
