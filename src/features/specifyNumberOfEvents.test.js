@@ -31,7 +31,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given('the User looking for Events.', () => {
-      AppWrapper = shallow(<App />);
+      AppWrapper = mount(<App />);
       NumberOfEventsWrapper = AppWrapper.find(NumberofEvents);
       AppWrapper.setState({
         numberOfEvents: 32,
