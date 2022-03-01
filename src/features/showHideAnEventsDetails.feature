@@ -12,4 +12,4 @@ Feature: As a user I should be able to expand and collapse Events, to see and hi
     Scenario: When the Details of an Event are expanded, User can Hide the Details by clicking "HideDetails".
         Given the Event is expanded.
         When  the user clicks on a HideDetails Button
-        Then the Even gets collapsed again.
+        Then the Details get hidden

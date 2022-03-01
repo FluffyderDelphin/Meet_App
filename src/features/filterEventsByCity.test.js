@@ -74,7 +74,7 @@ defineFeature(feature, (test) => {
     when(
       'the user selects a city (e.g., “Berlin, Germany”) from the list',
       () => {
-        AppWrapper.find('.suggestion li').at(0).simulate('click');
+        AppWrapper.find('.suggestions li').at(0).simulate('click');
       }
     );
 
