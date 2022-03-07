@@ -12,6 +12,7 @@ class App extends Component {
     events: [],
     locations: [],
     currentLocation: 'all',
+    maxEventsCount: 32,
   };
   componentDidMount() {
     const { numberOfEvents } = this.state;
@@ -34,6 +35,7 @@ class App extends Component {
         events: sliceEvents,
         numberOfEvents: eventCount ? eventCount : this.state.numberOfEvents,
         currentLocation: location,
+        maxEventsCount: events.length,
       });
     });
   };
@@ -49,6 +51,7 @@ class App extends Component {
         <NumberOfEvents
           currentLocation={this.state.currentLocation}
           numberOfEvents={this.state.numberOfEvents}
+          maxEventsCount={this.state.maxEventsCount}
           updateEvents={(location, eventCount) => {
             this.updateEvents(location, eventCount);
           }}

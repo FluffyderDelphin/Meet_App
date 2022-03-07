@@ -1,19 +1,35 @@
 import react, { Component } from 'react';
+import { ErrorAlert } from './Alert';
 
 class NumberOfEvents extends Component {
   state = {
     numberHandle: 32,
+    errorText: '',
   };
 
   numberOfEventsHandler = (event) => {
-    this.setState({
-      numberHandle: event.target.value,
-    });
+    if (
+      this.state.numberHandle <= 1 ||
+      this.state.numberHandle >= this.props.maxEventsCount
+    ) {
+      this.setState({
+        numberHandle: event.target.value,
+        errorText: `Valid Scope 1-${this.props.maxEventsCount}`,
+      });
+    } else {
+      this.setState({
+        numberHandle: event.target.value,
+        errorText: '',
+      });
+    }
   };
 
   render() {
     return (
-      <div>
+      <div className="numberOfEventsStyle">
+        <div className="errorMessage">
+          <ErrorAlert text={this.state.errorText}></ErrorAlert>
+        </div>
         <input
           className="numberOfEvents"
           type="number"
