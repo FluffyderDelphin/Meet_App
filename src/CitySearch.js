@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
+import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
     showSuggestions: undefined,
+    infoText: '',
   };
   handleInputChange = (event) => {
     const value = event.target.value;
+    this.setState({ showSuggestions: true });
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-    this.setState({
-      query: value,
-      suggestions,
-    });
+    if (suggestions.length === 0) {
+      this.setState({
+        query: value,
+        infoText: 'No Matching Results Found',
+      });
+    } else {
+      return this.setState({
+        query: value,
+        suggestions,
+        infoText: '',
+      });
+    }
   };
   handleItemClicked = (suggestion) => {
     this.setState({
@@ -26,6 +37,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
+        <InfoAlert text={this.state.infoText} />
         <input
           className="city"
           type="text"
