@@ -5,6 +5,9 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import React, { Component } from 'react';
 import { extractLocations, getEvents } from './api';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
 class App extends Component {
   state = {
@@ -42,26 +45,34 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <CitySearch
-          locations={this.state.locations}
-          updateEvents={(location, eventCount) => {
-            this.updateEvents(location, eventCount);
-          }}
-        />
-        <NumberOfEvents
-          currentLocation={this.state.currentLocation}
-          numberOfEvents={this.state.numberOfEvents}
-          maxEventsCount={this.state.maxEventsCount}
-          updateEvents={(location, eventCount) => {
-            this.updateEvents(location, eventCount);
-          }}
-        />
+      <Container className="App">
+        <Row className="justify-content-md-center">
+          <Col>
+            <CitySearch
+              locations={this.state.locations}
+              updateEvents={(location, eventCount) => {
+                this.updateEvents(location, eventCount);
+              }}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <NumberOfEvents
+              currentLocation={this.state.currentLocation}
+              numberOfEvents={this.state.numberOfEvents}
+              maxEventsCount={this.state.maxEventsCount}
+              updateEvents={(location, eventCount) => {
+                this.updateEvents(location, eventCount);
+              }}
+            />
+          </Col>
+        </Row>
         <EventList
           events={this.state.events}
           numberOfEvents={this.state.numberOfEvents}
         />
-      </div>
+      </Container>
     );
   }
 }
