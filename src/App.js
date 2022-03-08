@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
