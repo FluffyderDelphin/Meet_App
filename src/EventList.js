@@ -1,15 +1,16 @@
 import React from 'react';
 import Event from './Event';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 function Eventlist({ events, numberOfEvents }) {
   return (
-    <ul className="EventList">
+    <ListGroup className="EventList">
       {events.slice(0, numberOfEvents).map((event) => (
-        <li key={event.id}>
+        <ListGroup.Item key={event.id}>
           <Event event={event} />
-        </li>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   );
 }
 export default Eventlist;

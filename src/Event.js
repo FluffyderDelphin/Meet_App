@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 class Event extends Component {
   state = {
@@ -18,25 +20,32 @@ class Event extends Component {
   render() {
     const { event } = this.props;
     return (
-      <div className="event">
-        <div className="title">{event.summary}</div>
-        <div
-          className={`details`}
-          style={
-            this.state.ShowDetails ? { display: 'block' } : { display: 'none' }
-          }
-        >
-          <div className="description">{event.description}</div>
-        </div>
-        <button
-          className="showDetails"
-          onClick={() => {
-            this.handleDetails();
-          }}
-        >
-          {this.showDetailsButton}
-        </button>
-      </div>
+      <Card className="event" border="light">
+        <Card.Header>
+          <Card.Title className="title">{event.summary}</Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <Card.Text
+            className={`details`}
+            style={
+              this.state.ShowDetails
+                ? { display: 'block' }
+                : { display: 'none' }
+            }
+          >
+            <div className="description">{event.description}</div>
+          </Card.Text>
+          <Button
+            variant="info"
+            className="showDetails"
+            onClick={() => {
+              this.handleDetails();
+            }}
+          >
+            {this.showDetailsButton}
+          </Button>
+        </Card.Body>
+      </Card>
     );
   }
 }

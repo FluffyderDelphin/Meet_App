@@ -1,5 +1,11 @@
 import react, { Component } from 'react';
 import { ErrorAlert } from './Alert';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
+import { Button, ListGroup } from 'react-bootstrap';
 
 class NumberOfEvents extends Component {
   state = {
@@ -26,29 +32,38 @@ class NumberOfEvents extends Component {
 
   render() {
     return (
-      <div className="numberOfEventsStyle">
-        <div className="errorMessage">
-          <ErrorAlert text={this.state.errorText}></ErrorAlert>
-        </div>
-        <input
-          className="numberOfEvents"
-          type="number"
-          value={this.state.numberHandle}
-          min="0"
-          onChange={this.numberOfEventsHandler}
-        />
-        <button
-          className="changeNumbers"
-          onClick={() => {
-            this.props.updateEvents(
-              this.props.currentLocation,
-              this.state.numberHandle
-            );
-          }}
-        >
-          Update Event Count
-        </button>
-      </div>
+      <Form className="numberOfEventsStyle">
+        <Form.Group>
+          <InputGroup>
+            <Form.Control
+              className="numberOfEvents"
+              type="number"
+              value={this.state.numberHandle}
+              min="0"
+              onChange={this.numberOfEventsHandler}
+            />
+
+            <Button
+              variant="outline-secondary"
+              id="button-addon2"
+              id="basic-addon2"
+              className="changeNumbers"
+              onClick={() => {
+                this.props.updateEvents(
+                  this.props.currentLocation,
+                  this.state.numberHandle
+                );
+              }}
+            >
+              {' '}
+              Update Event Count
+            </Button>
+          </InputGroup>
+          <Form.Group className="errorMessage">
+            <ErrorAlert text={this.state.errorText}></ErrorAlert>
+          </Form.Group>
+        </Form.Group>
+      </Form>
     );
   }
 }

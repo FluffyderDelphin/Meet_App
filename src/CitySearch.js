@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { InfoAlert } from './Alert';
-
+import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup';
 class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
     showSuggestions: undefined,
-    infoText: '',
+    infoText: ' ',
   };
   handleInputChange = (event) => {
     const value = event.target.value;
@@ -23,7 +24,7 @@ class CitySearch extends Component {
       return this.setState({
         query: value,
         suggestions,
-        infoText: '',
+        infoText: ' ',
       });
     }
   };
@@ -31,40 +32,44 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion,
       showSuggestions: false,
-      infoText: '',
+      infoText: ' ',
     });
     this.props.updateEvents(suggestion);
   };
   render() {
     return (
-      <div className="CitySearch">
-        <InfoAlert text={this.state.infoText} />
-        <input
-          className="city"
-          type="text"
-          value={this.state.query}
-          onChange={this.handleInputChange}
-          onFocus={() => {
-            this.setState({ showSuggestions: true });
-          }}
-        ></input>
-        <ul
-          className="suggestions"
-          style={this.state.showSuggestions ? {} : { display: 'none' }}
-        >
-          {this.state.suggestions.map((suggestion) => (
-            <li
-              key={suggestion}
-              onClick={() => this.handleItemClicked(suggestion)}
-            >
-              {suggestion}
-            </li>
-          ))}
-          <li onClick={() => this.handleItemClicked('all')}>
-            <b>See all Cities</b>
-          </li>
-        </ul>
-      </div>
+      <Form className="CitySearch">
+        <Form.Group>
+          <Form.Text>
+            <InfoAlert text={this.state.infoText} />
+          </Form.Text>
+          <Form.Control
+            className="city"
+            type="text"
+            value={this.state.query}
+            onChange={this.handleInputChange}
+            onFocus={() => {
+              this.setState({ showSuggestions: true });
+            }}
+          ></Form.Control>
+          <ListGroup
+            className="suggestions"
+            style={this.state.showSuggestions ? {} : { display: 'none' }}
+          >
+            {this.state.suggestions.map((suggestion) => (
+              <ListGroup.Item
+                key={suggestion}
+                onClick={() => this.handleItemClicked(suggestion)}
+              >
+                {suggestion}
+              </ListGroup.Item>
+            ))}
+            <ListGroup.Item onClick={() => this.handleItemClicked('all')}>
+              <b>See all Cities</b>
+            </ListGroup.Item>
+          </ListGroup>
+        </Form.Group>
+      </Form>
     );
   }
 }

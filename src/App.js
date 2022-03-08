@@ -56,7 +56,7 @@ class App extends Component {
             />
           </Col>
         </Row>
-        <Row>
+        <Row className="justify-content-md-center">
           <Col>
             <NumberOfEvents
               currentLocation={this.state.currentLocation}
@@ -68,10 +68,14 @@ class App extends Component {
             />
           </Col>
         </Row>
-        <EventList
-          events={this.state.events}
-          numberOfEvents={this.state.numberOfEvents}
-        />
+        <Row className="justify-content-md-center">
+          <Col>
+            <EventList
+              events={this.state.events}
+              numberOfEvents={this.state.numberOfEvents}
+            />
+          </Col>
+        </Row>
       </Container>
     );
   }
