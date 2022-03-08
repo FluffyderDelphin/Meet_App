@@ -20,6 +20,7 @@ class App extends Component {
       this.setState({
         events: events.slice(0, numberOfEvents),
         locations: extractLocations(events),
+        maxEventsCount: events.length,
       });
     });
   }

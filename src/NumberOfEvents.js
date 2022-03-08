@@ -9,8 +9,8 @@ class NumberOfEvents extends Component {
 
   numberOfEventsHandler = (event) => {
     if (
-      this.state.numberHandle <= 1 ||
-      this.state.numberHandle >= this.props.maxEventsCount
+      event.target.value < 1 ||
+      event.target.value > this.props.maxEventsCount
     ) {
       this.setState({
         numberHandle: event.target.value,
