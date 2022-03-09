@@ -24,7 +24,9 @@ defineFeature(feature, (test) => {
 
     then('the user should see the list of upcoming events.', () => {
       AppWrapper.update();
-      expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+      expect(AppWrapper.find('.event').hostNodes()).toHaveLength(
+        mockData.length
+      );
     });
   });
 
@@ -48,7 +50,9 @@ defineFeature(feature, (test) => {
     then(
       'the user should receive a list of cities (suggestions) that match what they’ve typed',
       () => {
-        expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(2);
+        expect(
+          CitySearchWrapper.find('.suggestions .suggestion-item')
+        ).toHaveLength(2);
       }
     );
   });
@@ -61,20 +65,22 @@ defineFeature(feature, (test) => {
   }) => {
     given('user was typing “Berlin” in the city textbox', async () => {
       AppWrapper = await mount(<App />);
-      AppWrapper.find('.city').simulate('change', {
-        target: { value: 'Berlin' },
-      });
+      AppWrapper.find('.city')
+        .hostNodes()
+        .simulate('change', {
+          target: { value: 'Berlin' },
+        });
     });
 
     and('the list of suggested cities is showing', () => {
       AppWrapper.update();
-      expect(AppWrapper.find('.suggestions li')).toHaveLength(2);
+      expect(AppWrapper.find('.suggestions .suggestion-item')).toHaveLength(2);
     });
 
     when(
       'the user selects a city (e.g., “Berlin, Germany”) from the list',
       () => {
-        AppWrapper.find('.suggestions li').at(0).simulate('click');
+        AppWrapper.find('.suggestions').hostNodes().at(0).simulate('click');
       }
     );
 

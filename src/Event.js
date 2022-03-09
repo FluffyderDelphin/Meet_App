@@ -24,17 +24,13 @@ class Event extends Component {
         <Card.Header>
           <Card.Title className="title">{event.summary}</Card.Title>
         </Card.Header>
-        <Card.Body>
-          <Card.Text
-            className={`details`}
-            style={
-              this.state.ShowDetails
-                ? { display: 'block' }
-                : { display: 'none' }
-            }
-          >
-            <div className="description">{event.description}</div>
-          </Card.Text>
+        <Card.Body
+          className={`details`}
+          style={
+            this.state.ShowDetails ? { display: 'block' } : { display: 'none' }
+          }
+        >
+          <Card.Text className="description">{event.description}</Card.Text>
           <Button
             variant="info"
             className="showDetails"

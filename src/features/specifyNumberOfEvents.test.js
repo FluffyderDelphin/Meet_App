@@ -43,12 +43,13 @@ defineFeature(feature, (test) => {
     when('the user specifies a number of Events.', () => {
       const Number = { target: { value: 1 } };
       const NumberOfEventsHandler =
-        NumberOfEventsWrapper.find('.numberOfEvents');
+        NumberOfEventsWrapper.find('.numberOfEvents').hostNodes();
       NumberOfEventsHandler.simulate('change', Number);
     });
 
     and('clicks a Button to Confirm this Change', () => {
-      const NumberOfEventsButton = NumberOfEventsWrapper.find('.changeNumbers');
+      const NumberOfEventsButton =
+        NumberOfEventsWrapper.find('.changeNumbers').hostNodes();
       NumberOfEventsButton.simulate('click');
     });
 

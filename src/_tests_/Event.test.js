@@ -10,16 +10,18 @@ describe('<Event /> components', () => {
   });
   test('Event Compnent renders Event Data', () => {
     const { event } = EventWrapper.props();
-    expect(EventWrapper.find('.title').text()).toBe(event.summary);
+    expect(EventWrapper.find('.title').hostNodes().text()).toBe(event.summary);
 
-    expect(EventWrapper.find('.description').text()).toBe(event.description);
+    expect(EventWrapper.find('.description').hostNodes().text()).toBe(
+      event.description
+    );
   });
 
   test('"Show Details"Button will show more Details about Event', () => {
     EventWrapper.setState({
       ShowDetails: false,
     });
-    EventWrapper.find('.showDetails').simulate('click');
+    EventWrapper.find('.showDetails').hostNodes().simulate('click');
     expect(EventWrapper.state('ShowDetails')).toBe(true);
   });
 
@@ -27,7 +29,7 @@ describe('<Event /> components', () => {
     EventWrapper.setState({
       ShowDetails: true,
     });
-    EventWrapper.find('.showDetails').simulate('click');
+    EventWrapper.find('.showDetails').hostNodes().simulate('click');
     expect(EventWrapper.state('ShowDetails')).toBe(false);
   });
 
@@ -35,15 +37,17 @@ describe('<Event /> components', () => {
     EventWrapper.setState({
       ShowDetails: true,
     });
-    expect(EventWrapper.find('.details').instance().style.display).toBe(
-      'block'
-    );
+    expect(
+      EventWrapper.find('.details').hostNodes().instance().style.display
+    ).toBe('block');
   });
 
   test('when showdetails is false  ".details" is not displayed', () => {
     EventWrapper.setState({
       ShowDetails: false,
     });
-    expect(EventWrapper.find('.details').instance().style.display).toBe('none');
+    expect(
+      EventWrapper.find('.details').hostNodes().instance().style.display
+    ).toBe('none');
   });
 });

@@ -98,7 +98,9 @@ describe('<App /> integration', () => {
   });
 
   test('get list of all events when user selects "See all cities"', async () => {
-    const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
+    const suggestionItems = AppWrapper.find(CitySearch).find(
+      '.suggestions .suggestion-item'
+    );
     await suggestionItems.at(suggestionItems.length - 1).simulate('click');
     const allEvents = await getEvents();
     expect(AppWrapper.state('events')).toEqual(allEvents);
@@ -129,8 +131,10 @@ describe('<App /> integration', () => {
 
   test('on click changes NumberOfEvents State', async () => {
     const NumberOfEventsWrapper = AppWrapper.find(NumberofEvents);
-    const NumberOfEventsButton = NumberOfEventsWrapper.find('.changeNumbers');
-    const NumberOfEventsHandler = NumberOfEventsWrapper.find('.numberOfEvents');
+    const NumberOfEventsButton =
+      NumberOfEventsWrapper.find('.changeNumbers').hostNodes();
+    const NumberOfEventsHandler =
+      NumberOfEventsWrapper.find('.numberOfEvents').hostNodes();
     AppWrapper.setState({
       numberOfEvents: 2,
     });

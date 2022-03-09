@@ -14,9 +14,9 @@ defineFeature(feature, (test) => {
 
     then('they are collapsed by default.', () => {
       expect(EventWrapper.state('ShowDetails')).toBe(false);
-      expect(EventWrapper.find('.details').instance().style.display).toBe(
-        'none'
-      );
+      expect(
+        EventWrapper.find('.details').hostNodes().instance().style.display
+      ).toBe('none');
     });
   });
 
@@ -33,14 +33,14 @@ defineFeature(feature, (test) => {
     });
 
     when('the User clicks on a ShowDetails Button', () => {
-      EventWrapper.find('.showDetails').simulate('click');
+      EventWrapper.find('.showDetails').hostNodes().simulate('click');
     });
 
     then('the Event expands showing Details.', () => {
       expect(EventWrapper.state('ShowDetails')).toBe(true);
-      expect(EventWrapper.find('.details').instance().style.display).toBe(
-        'block'
-      );
+      expect(
+        EventWrapper.find('.details').hostNodes().instance().style.display
+      ).toBe('block');
     });
   });
 
@@ -57,14 +57,14 @@ defineFeature(feature, (test) => {
     });
 
     when('the user clicks on a HideDetails Button', () => {
-      EventWrapper.find('.showDetails').simulate('click');
+      EventWrapper.find('.showDetails').hostNodes().simulate('click');
     });
 
     then('the Details get hidden', () => {
       expect(EventWrapper.state('ShowDetails')).toBe(false);
-      expect(EventWrapper.find('.details').instance().style.display).toBe(
-        'none'
-      );
+      expect(
+        EventWrapper.find('.details').hostNodes().instance().style.display
+      ).toBe('none');
     });
   });
 });
