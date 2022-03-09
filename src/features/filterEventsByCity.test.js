@@ -74,13 +74,18 @@ defineFeature(feature, (test) => {
 
     and('the list of suggested cities is showing', () => {
       AppWrapper.update();
-      expect(AppWrapper.find('.suggestions .suggestion-item')).toHaveLength(2);
+      expect(
+        AppWrapper.find('.suggestions .suggestion-item').hostNodes()
+      ).toHaveLength(2);
     });
 
     when(
       'the user selects a city (e.g., “Berlin, Germany”) from the list',
       () => {
-        AppWrapper.find('.suggestions').hostNodes().at(0).simulate('click');
+        AppWrapper.find('.suggestions .suggestion-item')
+          .hostNodes()
+          .at(0)
+          .simulate('click');
       }
     );
 
@@ -95,7 +100,9 @@ defineFeature(feature, (test) => {
     and(
       'the user should receive a list of upcoming events in that city',
       () => {
-        expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+        expect(AppWrapper.find('.event').hostNodes()).toHaveLength(
+          mockData.length
+        );
       }
     );
   });
