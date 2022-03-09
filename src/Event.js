@@ -31,16 +31,16 @@ class Event extends Component {
           }
         >
           <Card.Text className="description">{event.description}</Card.Text>
-          <Button
-            variant="info"
-            className="showDetails"
-            onClick={() => {
-              this.handleDetails();
-            }}
-          >
-            {this.showDetailsButton}
-          </Button>
         </Card.Body>
+        <Button
+          variant="info"
+          className="showDetails"
+          onClick={() => {
+            this.handleDetails();
+          }}
+        >
+          {this.showDetailsButton}
+        </Button>
       </Card>
     );
   }
