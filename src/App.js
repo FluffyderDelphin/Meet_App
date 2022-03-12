@@ -4,11 +4,13 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import React, { Component } from 'react';
-import { extractLocations, getEvents } from './api';
+
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { InfoAlert } from './Alert';
+import WelcomeScreen from './WelcomeScreen';
+import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 
 class App extends Component {
   state = {
@@ -18,24 +20,32 @@ class App extends Component {
     currentLocation: 'all',
     maxEventsCount: 32,
     isOnline: '',
+    showWelcomeScreen: undefined,
   };
-  componentDidMount() {
+  async componentDidMount() {
     const { numberOfEvents } = this.state;
-    getEvents().then((events) => {
-      this.setState({
-        events: events.slice(0, numberOfEvents),
-        locations: extractLocations(events),
-        maxEventsCount: events.length,
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if (code || isTokenValid) {
+      getEvents().then((events) => {
+        this.setState({
+          events: events.slice(0, numberOfEvents),
+          locations: extractLocations(events),
+          maxEventsCount: events.length,
+        });
       });
-    });
-    if (navigator.onLine) {
-      this.setState({
-        isOnline: '',
-      });
-    } else if (!navigator.onLine) {
-      this.setState({
-        isOnline: 'App is in Offline Mode',
-      });
+      if (navigator.onLine) {
+        this.setState({
+          isOnline: '',
+        });
+      } else if (!navigator.onLine) {
+        this.setState({
+          isOnline: 'App is in Offline Mode',
+        });
+      }
     }
   }
 
@@ -55,6 +65,9 @@ class App extends Component {
     });
   };
   render() {
+    if (this.state.showWelcomeScreen === undefined)
+      return <Container className="App" />;
+
     return (
       <Container className="App">
         <InfoAlert text={this.state.errorText}></InfoAlert>
@@ -88,6 +101,12 @@ class App extends Component {
             />
           </Col>
         </Row>
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
       </Container>
     );
   }
