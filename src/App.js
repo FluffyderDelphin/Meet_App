@@ -8,6 +8,7 @@ import { extractLocations, getEvents } from './api';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import { InfoAlert } from './Alert';
 
 class App extends Component {
   state = {
@@ -16,6 +17,7 @@ class App extends Component {
     locations: [],
     currentLocation: 'all',
     maxEventsCount: 32,
+    isOnline: '',
   };
   componentDidMount() {
     const { numberOfEvents } = this.state;
@@ -26,6 +28,15 @@ class App extends Component {
         maxEventsCount: events.length,
       });
     });
+    if (navigator.onLine) {
+      this.setState({
+        isOnline: '',
+      });
+    } else if (!navigator.onLine) {
+      this.setState({
+        isOnline: 'App is in Offline Mode',
+      });
+    }
   }
 
   updateEvents = (location, eventCount) => {
@@ -46,6 +57,7 @@ class App extends Component {
   render() {
     return (
       <Container className="App">
+        <InfoAlert text={this.state.errorText}></InfoAlert>
         <Row className="justify-content-md-center">
           <Col>
             <CitySearch

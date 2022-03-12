@@ -46,7 +46,6 @@ class NumberOfEvents extends Component {
             <Button
               variant="outline-secondary"
               id="button-addon2"
-              id="basic-addon2"
               className="changeNumbers"
               onClick={() => {
                 this.props.updateEvents(
