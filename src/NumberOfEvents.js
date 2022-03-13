@@ -14,18 +14,24 @@ class NumberOfEvents extends Component {
   };
 
   numberOfEventsHandler = (event) => {
-    if (
-      event.target.value < 1 ||
-      event.target.value > this.props.maxEventsCount
-    ) {
+    if (navigator.onLine) {
+      if (
+        event.target.value < 1 ||
+        event.target.value > this.props.maxEventsCount
+      ) {
+        this.setState({
+          numberHandle: event.target.value,
+          errorText: `Valid Scope 1-${this.props.maxEventsCount}`,
+        });
+      } else {
+        this.setState({
+          numberHandle: event.target.value,
+          errorText: '',
+        });
+      }
+    } else if (!navigator.onLine) {
       this.setState({
-        numberHandle: event.target.value,
-        errorText: `Valid Scope 1-${this.props.maxEventsCount}`,
-      });
-    } else {
-      this.setState({
-        numberHandle: event.target.value,
-        errorText: '',
+        errorText: 'This Feature is not available in Offline Mode',
       });
     }
   };
