@@ -65,8 +65,8 @@ class App extends Component {
     });
   };
   render() {
-    if (this.state.showWelcomeScreen === undefined) return;
-    <Container className="App" />;
+    if (this.state.showWelcomeScreen === undefined)
+      return <Container className="App" />;
 
     if (this.state.showWelcomeScreen)
       return (
@@ -78,40 +78,42 @@ class App extends Component {
         />
       );
 
-    if (!this.state.showWelcomeScreen) return;
-    <Container className="App">
-      <InfoAlert text={this.state.errorText}></InfoAlert>
-      <Row className="justify-content-md-center">
-        <Col>
-          <CitySearch
-            locations={this.state.locations}
-            updateEvents={(location, eventCount) => {
-              this.updateEvents(location, eventCount);
-            }}
-          />
-        </Col>
-      </Row>
-      <Row className="justify-content-md-center">
-        <Col>
-          <NumberOfEvents
-            currentLocation={this.state.currentLocation}
-            numberOfEvents={this.state.numberOfEvents}
-            maxEventsCount={this.state.maxEventsCount}
-            updateEvents={(location, eventCount) => {
-              this.updateEvents(location, eventCount);
-            }}
-          />
-        </Col>
-      </Row>
-      <Row className="justify-content-md-center">
-        <Col>
-          <EventList
-            events={this.state.events}
-            numberOfEvents={this.state.numberOfEvents}
-          />
-        </Col>
-      </Row>
-    </Container>;
+    if (!this.state.showWelcomeScreen)
+      return (
+        <Container className="App">
+          <InfoAlert text={this.state.errorText}></InfoAlert>
+          <Row className="justify-content-md-center">
+            <Col>
+              <CitySearch
+                locations={this.state.locations}
+                updateEvents={(location, eventCount) => {
+                  this.updateEvents(location, eventCount);
+                }}
+              />
+            </Col>
+          </Row>
+          <Row className="justify-content-md-center">
+            <Col>
+              <NumberOfEvents
+                currentLocation={this.state.currentLocation}
+                numberOfEvents={this.state.numberOfEvents}
+                maxEventsCount={this.state.maxEventsCount}
+                updateEvents={(location, eventCount) => {
+                  this.updateEvents(location, eventCount);
+                }}
+              />
+            </Col>
+          </Row>
+          <Row className="justify-content-md-center">
+            <Col>
+              <EventList
+                events={this.state.events}
+                numberOfEvents={this.state.numberOfEvents}
+              />
+            </Col>
+          </Row>
+        </Container>
+      );
   }
 }
 export default App;
