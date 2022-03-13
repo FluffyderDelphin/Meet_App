@@ -29,7 +29,7 @@ o.svg"
         </div>
       </div>
       <a
-        href="https://FluffyderDelphin .github.io/Meet_App/privacy.html"
+        href="https://FluffyderDelphin.github.io/Meet_App/privacy.html"
         rel="nofollow noopener"
       >
         Privacy policy
