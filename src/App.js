@@ -28,8 +28,10 @@ class App extends Component {
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get('code');
+    const byPassWelcomeScreen =
+      code || isTokenValid || (accessToken && !navigator.onLine);
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if (code || isTokenValid) {
+    if (byPassWelcomeScreen) {
       getEvents().then((events) => {
         this.setState({
           events: events.slice(0, numberOfEvents),
