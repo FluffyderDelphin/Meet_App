@@ -37,15 +37,16 @@ class App extends Component {
           maxEventsCount: events.length,
         });
       });
-      if (navigator.onLine) {
-        this.setState({
-          isOnline: '',
-        });
-      } else if (!navigator.onLine) {
+      window.addEventListener('offline', () => {
         this.setState({
           isOnline: 'App is in Offline Mode',
         });
-      }
+      });
+      window.addEventListener('online', () => {
+        this.setState({
+          isOnline: '',
+        });
+      });
     }
   }
 
@@ -70,17 +71,21 @@ class App extends Component {
 
     if (this.state.showWelcomeScreen)
       return (
-        <WelcomeScreen
-          showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => {
-            getAccessToken();
-          }}
-        />
+        <>
+          <InfoAlert text={this.state.isOnline}></InfoAlert>
+          <WelcomeScreen
+            showWelcomeScreen={this.state.showWelcomeScreen}
+            getAccessToken={() => {
+              getAccessToken();
+            }}
+          />
+        </>
       );
 
     if (!this.state.showWelcomeScreen)
       return (
         <Container className="App">
+          <InfoAlert text={this.state.isOnline}></InfoAlert>
           <InfoAlert text={this.state.errorText}></InfoAlert>
           <Row className="justify-content-md-center">
             <Col>
