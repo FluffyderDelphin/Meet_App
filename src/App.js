@@ -66,6 +66,19 @@ class App extends Component {
   };
   render() {
     if (this.state.showWelcomeScreen === undefined) return;
+    <Container className="App" />;
+
+    if (this.state.showWelcomeScreen)
+      return (
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
+      );
+
+    if (!this.state.showWelcomeScreen) return;
     <Container className="App">
       <InfoAlert text={this.state.errorText}></InfoAlert>
       <Row className="justify-content-md-center">
@@ -99,14 +112,6 @@ class App extends Component {
         </Col>
       </Row>
     </Container>;
-    return (
-      <WelcomeScreen
-        showWelcomeScreen={this.state.showWelcomeScreen}
-        getAccessToken={() => {
-          getAccessToken();
-        }}
-      />
-    );
   }
 }
 export default App;

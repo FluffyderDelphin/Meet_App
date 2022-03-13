@@ -29,18 +29,12 @@ class CitySearch extends Component {
     }
   };
   handleItemClicked = (suggestion) => {
-    if (navigator.onLine) {
-      this.setState({
-        query: suggestion,
-        showSuggestions: false,
-        infoText: ' ',
-      });
-      this.props.updateEvents(suggestion);
-    } else if (!navigator.onLine) {
-      this.setState({
-        infoText: 'This Feature is not avaible while in Offline Mode',
-      });
-    }
+    this.setState({
+      query: suggestion,
+      showSuggestions: false,
+      infoText: ' ',
+    });
+    this.props.updateEvents(suggestion);
   };
   render() {
     return (
