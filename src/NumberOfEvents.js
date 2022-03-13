@@ -1,11 +1,9 @@
-import react, { Component } from 'react';
+import { Component } from 'react';
 import { ErrorAlert } from './Alert';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
-import { Button, ListGroup } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class NumberOfEvents extends Component {
   state = {
