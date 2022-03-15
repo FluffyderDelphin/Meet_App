@@ -11,6 +11,8 @@ import Container from 'react-bootstrap/Container';
 import { InfoAlert } from './Alert';
 import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
+import Chart from './Chart';
+import ChartPie from './ChartPie';
 
 class App extends Component {
   state = {
@@ -22,6 +24,7 @@ class App extends Component {
     isOnline: '',
     showWelcomeScreen: undefined,
   };
+
   async componentDidMount() {
     const { numberOfEvents } = this.state;
     const accessToken = localStorage.getItem('access_token');
@@ -113,6 +116,14 @@ class App extends Component {
           </Row>
           <Row className="justify-content-md-center">
             <Col>
+              <ChartPie
+                locations={this.state.locations}
+                events={this.state.events}
+              />
+              <Chart
+                locations={this.state.locations}
+                events={this.state.events}
+              />
               <EventList
                 events={this.state.events}
                 numberOfEvents={this.state.numberOfEvents}
