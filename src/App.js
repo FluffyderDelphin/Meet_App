@@ -124,6 +124,10 @@ class App extends Component {
                 locations={this.state.locations}
                 events={this.state.events}
               />
+            </Col>
+          </Row>
+          <Row className="justify-content-md-center">
+            <Col>
               <EventList
                 events={this.state.events}
                 numberOfEvents={this.state.numberOfEvents}
