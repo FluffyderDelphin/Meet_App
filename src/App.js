@@ -120,10 +120,10 @@ class App extends Component {
                 locations={this.state.locations}
                 events={this.state.events}
               />
-              <Chart
+              {/* <Chart
                 locations={this.state.locations}
                 events={this.state.events}
-              />
+              /> */}
             </Col>
           </Row>
           <Row className="justify-content-md-center">
