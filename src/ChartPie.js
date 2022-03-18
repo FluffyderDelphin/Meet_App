@@ -60,7 +60,7 @@ export default function ChartPie({ events }) {
   return (
     <div style={{ height: '400px' }}>
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={400} height={400}>
+        <PieChart width={800} height={800}>
           <Pie
             data={placeholderData}
             cx="50%"
