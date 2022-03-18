@@ -58,7 +58,7 @@ export default function ChartPie({ events }) {
   };
 
   return (
-    <div style={{ height: '400px' }}>
+    <div style={{ height: '600px' }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={800} height={800}>
           <Pie
