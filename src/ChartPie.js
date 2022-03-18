@@ -28,7 +28,7 @@ export default function ChartPie({ events }) {
     { name: 'Group D', value: 200 },
   ];
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#cf281f'];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
@@ -67,7 +67,7 @@ export default function ChartPie({ events }) {
             cy="50%"
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={80}
+            outerRadius={150}
             fill="#8884d8"
             dataKey="value"
           >
