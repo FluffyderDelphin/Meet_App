@@ -119,7 +119,9 @@ class App extends Component {
               <ChartPie
                 locations={this.state.locations}
                 events={this.state.events}
-              />
+              />{' '}
+            </Col>
+            <Col>
               <Chart
                 locations={this.state.locations}
                 events={this.state.events}
