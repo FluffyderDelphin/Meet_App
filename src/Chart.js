@@ -32,8 +32,10 @@ class Chart extends Component {
   ];
   render() {
     return (
-      <ResponsiveContainer height={400}>
+      <ResponsiveContainer width="100%" height="100%">
         <ScatterChart
+          width={400}
+          height={400}
           margin={{
             top: 20,
             right: 20,
@@ -42,15 +44,10 @@ class Chart extends Component {
           }}
         >
           <CartesianGrid />
-          <XAxis type="category" dataKey="city" name="stature" />
-          <YAxis
-            type="number"
-            dataKey="number"
-            name="weight"
-            allowDecimals={false}
-          />
+          <XAxis type="number" dataKey="x" name="stature" unit="cm" />
+          <YAxis type="number" dataKey="y" name="weight" unit="kg" />
           <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-          <Scatter data={this.placeHolderdata} fill="#8884d8" />
+          <Scatter name="A school" data={this.placeHolderdata} fill="#8884d8" />
         </ScatterChart>
       </ResponsiveContainer>
     );
