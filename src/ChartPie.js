@@ -21,11 +21,18 @@ export default function ChartPie({ events }) {
     return data;
   };
 
+  const placeholderData = [
+    { name: 'Group A', value: 400 },
+    { name: 'Group B', value: 300 },
+    { name: 'Group C', value: 300 },
+    { name: 'Group D', value: 200 },
+  ];
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <PieChart width={400} height={400}>
         <Pie
-          data={getData()}
+          data={placeholderData}
           cx={200}
           cy={200}
           labelLine={false}
