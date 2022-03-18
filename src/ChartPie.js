@@ -7,10 +7,9 @@ export default function ChartPie({ events }) {
   useEffect(() => {
     setData(() => getData());
   }, [events]);
+  const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
 
   const getData = () => {
-    const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
-
     const data = genres.map((genre) => {
       const value = events.filter((event) =>
         event.summary.split(' ').includes(genre)
@@ -20,13 +19,6 @@ export default function ChartPie({ events }) {
     });
     return data;
   };
-
-  const placeholderData = [
-    { name: 'Group A', value: 400 },
-    { name: 'Group B', value: 300 },
-    { name: 'Group C', value: 300 },
-    { name: 'Group D', value: 200 },
-  ];
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#cf281f'];
 
@@ -44,6 +36,8 @@ export default function ChartPie({ events }) {
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
+    let precentValue = (percent * 100).toFixed(0);
+
     return (
       <text
         x={x}
@@ -52,7 +46,7 @@ export default function ChartPie({ events }) {
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
       >
-        {`${(percent * 100).toFixed(0)}%`}
+        {`${genres[index]} ${precentValue}%`}
       </text>
     );
   };
