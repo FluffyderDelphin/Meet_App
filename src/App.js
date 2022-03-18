@@ -115,7 +115,7 @@ class App extends Component {
             </Col>
           </Row>
           <Row className="justify-content-md-center">
-            <Col xs={6} md={4}>
+            <Col xs={6} md={8}>
               <ChartPie
                 locations={this.state.locations}
                 events={this.state.events}
