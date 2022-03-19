@@ -12,7 +12,9 @@ export default function ChartPie({ events }) {
   const getData = () => {
     const data = genres.map((genre) => {
       const value = events.filter((event) =>
-        event.summary.split(' ').includes(genre)
+        event.summary
+          .split(' ')
+          .find((word) => word.toLowerCase().includes(genre.toLowerCase()))
       ).length;
 
       return { name: genre, value };
@@ -32,17 +34,21 @@ export default function ChartPie({ events }) {
     percent,
     index,
   }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    // const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    // const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    // const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    const radius = outerRadius;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN) * 1.2;
+    const y = cy + radius * Math.sin(-midAngle * RADIAN) * 1.2;
 
     let precentValue = (percent * 100).toFixed(0);
 
-    return (
+    return precentValue == 0 ? null : (
       <text
         x={x}
         y={y}
-        fill="white"
+        fill={COLORS[index]}
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
       >
@@ -54,14 +60,14 @@ export default function ChartPie({ events }) {
   return (
     <div style={{ height: '400px' }}>
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={400} height={400}>
+        <PieChart width={400} height={400} key={Math.random()}>
           <Pie
-            data={getData()}
+            data={data}
             cx="50%"
             cy="50%"
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={150}
+            outerRadius={120}
             fill="#8884d8"
             dataKey="value"
           >

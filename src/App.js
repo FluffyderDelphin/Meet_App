@@ -22,18 +22,18 @@ class App extends Component {
     currentLocation: 'all',
     maxEventsCount: 32,
     isOnline: '',
-    showWelcomeScreen: undefined,
+    showWelcomeScreen: false,
   };
 
   async componentDidMount() {
     const { numberOfEvents } = this.state;
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
-    const byPassWelcomeScreen =
-      code || isTokenValid || (accessToken && !navigator.onLine);
-    this.setState({ showWelcomeScreen: !byPassWelcomeScreen });
+    // const accessToken = localStorage.getItem('access_token');
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const code = searchParams.get('code');
+    // const byPassWelcomeScreen =
+    //   code || isTokenValid || (accessToken && !navigator.onLine);
+    // this.setState({ showWelcomeScreen: !byPassWelcomeScreen });
     if (true) {
       getEvents().then((events) => {
         this.setState({
@@ -55,7 +55,7 @@ class App extends Component {
     }
   }
 
-  updateEvents = (location, eventCount) => {
+  updateEvents = (location, eventCount = this.state.numberOfEvents) => {
     getEvents().then((events) => {
       const locationEvents =
         location === 'all'
@@ -115,13 +115,13 @@ class App extends Component {
             </Col>
           </Row>
           <Row className="justify-content-md-center">
-            <Col xs={12} md={4}>
+            <Col xs={12} md={5}>
               <ChartPie
                 locations={this.state.locations}
                 events={this.state.events}
               />{' '}
             </Col>
-            <Col xs={12} md={8}>
+            <Col xs={12} md={7}>
               <Chart
                 locations={this.state.locations}
                 events={this.state.events}
