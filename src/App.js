@@ -22,18 +22,18 @@ class App extends Component {
     currentLocation: 'all',
     maxEventsCount: 32,
     isOnline: '',
-    showWelcomeScreen: false,
+    showWelcomeScreen: undefined,
   };
 
   async componentDidMount() {
     const { numberOfEvents } = this.state;
-    // const accessToken = localStorage.getItem('access_token');
-    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    // const searchParams = new URLSearchParams(window.location.search);
-    // const code = searchParams.get('code');
-    // const byPassWelcomeScreen =
-    //   code || isTokenValid || (accessToken && !navigator.onLine);
-    // this.setState({ showWelcomeScreen: !byPassWelcomeScreen });
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    const byPassWelcomeScreen =
+      code || isTokenValid || (accessToken && !navigator.onLine);
+    this.setState({ showWelcomeScreen: !byPassWelcomeScreen });
     if (true) {
       getEvents().then((events) => {
         this.setState({
