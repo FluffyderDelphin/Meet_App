@@ -7,7 +7,7 @@ export default function ChartPie({ events }) {
   useEffect(() => {
     setData(() => getData());
   }, [events]);
-  const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
+  const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
 
   const getData = () => {
     const data = genres.map((genre) => {
