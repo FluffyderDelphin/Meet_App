@@ -77,13 +77,18 @@ class App extends Component {
     if (this.state.showWelcomeScreen)
       return (
         <>
-          <InfoAlert text={this.state.isOnline}></InfoAlert>
-          <WelcomeScreen
-            showWelcomeScreen={this.state.showWelcomeScreen}
-            getAccessToken={() => {
-              getAccessToken();
-            }}
-          />
+          <Container fluid>
+            <Row>
+              <InfoAlert text={this.state.isOnline}></InfoAlert>
+
+              <WelcomeScreen
+                showWelcomeScreen={this.state.showWelcomeScreen}
+                getAccessToken={() => {
+                  getAccessToken();
+                }}
+              />
+            </Row>
+          </Container>
         </>
       );
 
