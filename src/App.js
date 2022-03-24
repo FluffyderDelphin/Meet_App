@@ -78,7 +78,7 @@ class App extends Component {
       return (
         <>
           <Container fluid>
-            <Row>
+            <Row className="justify-content-md-center">
               <InfoAlert text={this.state.isOnline}></InfoAlert>
 
               <WelcomeScreen
