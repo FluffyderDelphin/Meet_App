@@ -55,7 +55,7 @@ class App extends Component {
     }
   }
 
-  updateEvents = (location, eventCount) => {
+  updateEvents = (location, eventCount = this.state.numberOfEvents) => {
     getEvents().then((events) => {
       const locationEvents =
         location === 'all'
@@ -77,13 +77,18 @@ class App extends Component {
     if (this.state.showWelcomeScreen)
       return (
         <>
-          <InfoAlert text={this.state.isOnline}></InfoAlert>
-          <WelcomeScreen
-            showWelcomeScreen={this.state.showWelcomeScreen}
-            getAccessToken={() => {
-              getAccessToken();
-            }}
-          />
+          <Container fluid>
+            <Row className="justify-content-md-center">
+              <InfoAlert text={this.state.isOnline}></InfoAlert>
+
+              <WelcomeScreen
+                showWelcomeScreen={this.state.showWelcomeScreen}
+                getAccessToken={() => {
+                  getAccessToken();
+                }}
+              />
+            </Row>
+          </Container>
         </>
       );
 
@@ -115,13 +120,13 @@ class App extends Component {
             </Col>
           </Row>
           <Row className="justify-content-md-center">
-            <Col xs={12} md={4}>
+            <Col xs={12} md={5}>
               <ChartPie
                 locations={this.state.locations}
                 events={this.state.events}
               />{' '}
             </Col>
-            <Col xs={12} md={8}>
+            <Col xs={12} md={7}>
               <Chart
                 locations={this.state.locations}
                 events={this.state.events}
