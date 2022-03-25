@@ -12,6 +12,9 @@ describe('<App /> component', () => {
   let AppWrapper;
   beforeAll(() => {
     AppWrapper = shallow(<App />);
+    AppWrapper.setState({
+      showWelcomeScreen: false,
+    });
   });
   test('render list of events', () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1);
@@ -48,6 +51,9 @@ describe('<App /> integration', () => {
   let AppWrapper;
   beforeEach(() => {
     AppWrapper = mount(<App />);
+    AppWrapper.setState({
+      showWelcomeScreen: false,
+    });
   });
 
   afterEach(() => {
@@ -55,10 +61,10 @@ describe('<App /> integration', () => {
   });
 
   test('App passes  "Events" state as a prop to Eventlist', () => {
-    const AppEventsState = AppWrapper.state('events');
     AppWrapper.setState({
       events: mockData,
     });
+    const AppEventsState = AppWrapper.state('events');
     expect(AppWrapper.find(Eventlist).props().events).toEqual(AppEventsState);
   });
 

@@ -20,6 +20,9 @@ defineFeature(feature, (test) => {
 
     when('the user opens the app', () => {
       AppWrapper = mount(<App />);
+      AppWrapper.setState({
+        showWelcomeScreen: false,
+      });
     });
 
     then('the user should see the list of upcoming events.', () => {
@@ -65,6 +68,9 @@ defineFeature(feature, (test) => {
   }) => {
     given('user was typing “Berlin” in the city textbox', async () => {
       AppWrapper = await mount(<App />);
+      AppWrapper.setState({
+        showWelcomeScreen: false,
+      });
       AppWrapper.find('.city')
         .hostNodes()
         .simulate('change', {

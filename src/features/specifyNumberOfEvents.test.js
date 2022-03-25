@@ -15,6 +15,9 @@ defineFeature(feature, (test) => {
   }) => {
     given('the user hasnt specified a Number and looks for Events.', () => {
       AppWrapper = shallow(<App />);
+      AppWrapper.setState({
+        showWelcomeScreen: false,
+      });
     });
 
     when('the User looks for the Events. Then', () => {});
@@ -32,6 +35,9 @@ defineFeature(feature, (test) => {
   }) => {
     given('the User looking for Events.', () => {
       AppWrapper = mount(<App />);
+      AppWrapper.setState({
+        showWelcomeScreen: false,
+      });
       NumberOfEventsWrapper = AppWrapper.find(NumberofEvents);
       AppWrapper.setState({
         numberOfEvents: 32,
