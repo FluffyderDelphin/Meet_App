@@ -28,13 +28,19 @@ class App extends Component {
   async componentDidMount() {
     const { numberOfEvents } = this.state;
     const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const isTokenValid =
+      !window.location.href.startsWith('http://localhost') &&
+      !(accessToken && !navigator.onLine) &&
+      (await checkToken(accessToken)).error
+        ? false
+        : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get('code');
-    const byPassWelcomeScreen =
-      code || isTokenValid || (accessToken && !navigator.onLine);
+    const byPassWelcomeScreen = code || isTokenValid;
+
     this.setState({ showWelcomeScreen: !byPassWelcomeScreen });
-    if (true) {
+
+    if (byPassWelcomeScreen) {
       getEvents().then((events) => {
         this.setState({
           events: events.slice(0, numberOfEvents),

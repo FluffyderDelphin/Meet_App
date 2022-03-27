@@ -25,7 +25,7 @@ class Chart extends Component {
   render() {
     return (
       <div style={{ height: '400px' }}>
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={400}>
           <ScatterChart
             width={400}
             height={400}

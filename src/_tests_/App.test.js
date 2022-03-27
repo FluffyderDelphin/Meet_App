@@ -69,20 +69,20 @@ describe('<App /> integration', () => {
   });
 
   test('App passes  "currentLocation" state as a prop to NumberOfEvents', () => {
-    const AppEventsState = AppWrapper.state('currentLocation');
     AppWrapper.setState({
       currentLocation: 'all',
     });
+    const AppEventsState = AppWrapper.state('currentLocation');
     expect(AppWrapper.find(NumberofEvents).props().currentLocation).toEqual(
       AppEventsState
     );
   });
 
   test('App passes "locations" state as a prop to CitySearch', () => {
-    const AppLocationsState = AppWrapper.state('locations');
     AppWrapper.setState({
       locations: extractLocations(mockData),
     });
+    const AppLocationsState = AppWrapper.state('locations');
     expect(AppWrapper.find(CitySearch).props().locations).toEqual(
       AppLocationsState
     );
