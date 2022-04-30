@@ -1,5 +1,7 @@
 # Meet_App
 
+<img src="public\img\Screenshot.jpg" alt="Screenshot" width="400"/>
+
 ## What does this Meet_App do ?
 
 This App allows the User to Login in with his Google Acount and View Events provided by an CarrerFoundry Email. 
