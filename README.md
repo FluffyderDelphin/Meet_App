@@ -17,6 +17,7 @@ The App allows the User to Filter and see Data about the Events displayed in 2 G
 ## User Stories and Scenarios
 
 - Feature 1:
+
 As a user I should be able to “filter events by city”
 So that I can see the list of events that take place in that city
 
@@ -41,6 +42,7 @@ And the user should receive a list of upcoming events in that city
 
 
 - Feature 2:
+
 As a user I should be able to expand and collapse Events, to see and hide Details. 
 
 -SCENARIO 1:
@@ -86,6 +88,7 @@ When the users tries to change the Search Settings.
 Then he gets an Error Message.
 
 - Feature 5:
+
 As a user I should be able to view Charts that visualizes Event Data, so I can soo how the Events are distributed over different Cities
 
 SCENARIO 1:
