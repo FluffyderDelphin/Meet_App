@@ -1,6 +1,6 @@
 # Meet_App
 
-<img src="public\img\Screenshot.jpg" alt="Screenshot" width="1200"/>1
+<img src="public\img\Screenshot.jpg" alt="Screenshot" width="1200"/>
 
 GH-Pages Link: https://fluffyderdelphin.github.io/Meet_App/
 
