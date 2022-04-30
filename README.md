@@ -14,6 +14,8 @@ The App allows the User to Filter and see Data about the Events displayed in 2 G
 - Jest
 - Pupeteer
 
+## User Stories and Scenarios
+
 Feature 1;
 As a user
 I should be able to “filter events by city”
