@@ -1,6 +1,6 @@
 # Meet_App
 
-<img src="public\img\Screenshot.jpg" alt="Screenshot" width="400"/>
+<img src="public\img\Screenshot.jpg" alt="Screenshot" width="800"/>
 
 ## What does this Meet_App do ?
 
