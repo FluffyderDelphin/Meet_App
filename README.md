@@ -1,5 +1,17 @@
 # Meet_App
 
+## What does this Meet_App do ?
+
+This App allows the User to Login in with his Google Acount and View Events provided by an CarrerFoundry Email. 
+The App allows the User to Filter and see Data about the Events displayed in 2 Graphs. This Project is build with the Jest testing Framewokr in mind, wich tests the Key Features of the App.
+
+## Tech used
+- React
+- Aws serverless Functions
+- Google Calendar
+- Jest
+- Pupeteer
+
 Feature 1;
 As a user
 I should be able to “filter events by city”
