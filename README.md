@@ -1,6 +1,8 @@
 # Meet_App
 
-<img src="public\img\Screenshot.jpg" alt="Screenshot" width="1200"/>
+<img src="public\img\Screenshot.jpg" alt="Screenshot" width="1200"/>1
+
+GH-Pages Link: https://fluffyderdelphin.github.io/Meet_App/
 
 ## What does this Meet_App do ?
 
@@ -45,7 +47,7 @@ And the user should receive a list of upcoming events in that city
 
 As a user I should be able to expand and collapse Events, to see and hide Details. 
 
--SCENARIO 1:
+SCENARIO 1:
 Given the user has not clicked on any Event
 Then they are collapsed by default.
 
