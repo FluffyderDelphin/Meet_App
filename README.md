@@ -12,9 +12,11 @@ The App allows the User to Filter and see Data about the Events displayed in 2 G
 ## Tech used
 - React
 - Aws serverless Functions
-- Google Calendar
+- Google Calendar Api
+- OAuth2
 - Jest
 - Pupeteer
+- Recharts
 
 ## User Stories and Scenarios
 
